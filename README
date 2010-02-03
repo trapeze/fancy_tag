@@ -1,0 +1,36 @@
+Fancy Tag
+=========
+
+Introduction
+------------
+
+`fancy_tag` is a template tag decorator designed to replace Django's built in
+`simple_tag` decorator. It's backwards compatible with the functionality
+supported by `simple_tag` and adds new calling options (like named arguments).
+
+Features
+--------
+
+* Named arguments - arguments can be explicitly assigned to parameter specific
+  parameters in the template tag function
+
+* Variable length arguments - The "`*args`" and "`**kwargs`" notation
+
+* The trailing "`as <varname>`" to assign the output of the template tag into
+  a variable.
+
+Installation
+------------
+
+Instead of:
+
+    @register.simple_tag
+    def some_tag(arg1, arg2)
+        return '%s %s' % (arg1, arg2)
+
+
+ Use:
+
+    @fancy_tag(register)
+    def some_tag(arg1, arg2)
+        return '%s %s' % (arg1, arg2)
