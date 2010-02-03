@@ -1,24 +1,6 @@
-projectname-UNRELEASED
-======================
+fancy_tag-0.1.0ALPHA
+====================
 
-Tagged on (date) by (developer) <developer@trapeze.com>
+Tagged on February 3, 2010 by Sam Bull <sbull@trapeze.com>
 
-Major Code Changes
-------------------
-
-None
-
-Bugs Fixes and Small Enhancements
----------------------------------
-
-None
-
-Upgrade Instructions
---------------------
-
-None
-
-Known issues
-------------
-
-TODO
+Initial release from existing codebase.
