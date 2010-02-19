@@ -51,7 +51,7 @@ TODO: Add link to github
 License
 -------
 
-fancy_tag is Copyright © 2010 Sam Bull, Trapeze. It is free software, and
+fancy_tag is Copyright (c) 2010 Sam Bull, Trapeze. It is free software, and
 may be redistributed under the terms specified in the LICENSE file.
 
 Credits
