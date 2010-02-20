@@ -11,8 +11,8 @@ new calling options like named arguments.
 Features
 --------
 
-* Named arguments - arguments can be explicitly assigned to parameter specific
-  parameters in the template tag function
+* Keyword arguments - arguments can be explicitly assigned to parameter
+  specific parameters in the template tag function
 
 * Variable length arguments - The "``*args``" and "``**kwargs``" notation
 
