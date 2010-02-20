@@ -38,6 +38,79 @@ Installation
     def some_tag(arg1, arg2):
         return '%s %s' % (arg1, arg2)
 
+Examples
+--------
+
+Keyword Arguments
+~~~~~~~~~~~~~~~~~
+
+Python Code::
+
+    @fancy_tag(register)
+    def say_cheese(name, thing_to_say='cheese'):
+        return 'Hey, %s! Say %s!' % (name, thing_to_say)
+
+Template Code::
+
+    {% say_cheese "Jacob" %} -> "Hey, Jacob! Say Cheese!"
+    {% say_cheese "Malcolm" thing_to_say="Vegemite" %} -> "Hey Malcolm! Say Vegemite!"
+
+Variable Length Arguments
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Python Code::
+
+    @fancy_tag(register)
+    def greet_people(*args):
+        return 'Hello, %s' % ', '.join(args)
+
+
+Template Code::
+
+    {% greet_people "Larry" "Darryl" "Darryl" %}
+
+Produces:
+
+Hello, Larry, Darryl, Darryl
+
+Variable Length Keyword Arguments
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Python Code::
+
+    @fancy_tag(register)
+    def watch_your_mouth(s, **kwargs):
+        for key, value in kwargs.items():
+            s = s.replace(key, value)
+        return s
+
+Template Code::
+
+    {% watch_your_mouth "You damn dirty ape!" "damn"="doggone" "dirty"="handsome" %}
+
+Produces:
+
+You doggone handsome ape!"
+
+Assigning Output To A Variable
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Python Code::
+
+    @fancy_tag(register)
+    def now(format_string):
+        df = DateFormat(datetime.now())
+        return df.format(format_string)
+
+Template Code::
+
+    {% now as just_now %}
+    Oh no, it's already {{ just_now }}!
+
+Produces:
+
+Oh no, it's already February 20th, 2010!
+
 Testing
 -------
 
