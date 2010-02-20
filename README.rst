@@ -119,7 +119,7 @@ With Django in your python path, run ``tests/run_tests.py``
 Source
 ------
 
-TODO: Add link to github
+http://github.com/trapeze/fancy_tag
 
 License
 -------
