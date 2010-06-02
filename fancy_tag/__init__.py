@@ -8,9 +8,17 @@ from django.utils.functional import curry
 kwarg_re = re.compile(r'([^\'"]*)=(.*)')
 
 
-def fancy_tag_compiler(params, defaults, takes_var_args, takes_var_kwargs, name, node_class, parser, token):
+def fancy_tag_compiler(params, defaults, takes_var_args, takes_var_kwargs, takes_context, name, node_class, parser, token):
     "Returns a template.Node subclass."
     bits = token.split_contents()[1:]
+
+    if takes_context:
+        if 'context' in params[:1]:
+            params = params[1:]
+        else:
+            raise TemplateSyntaxError(
+                "Any tag function decorated with takes_context=True "
+                "must have a first argument of 'context'")
 
     # Split args and kwargs
     args = []
@@ -56,24 +64,28 @@ def fancy_tag_compiler(params, defaults, takes_var_args, takes_var_kwargs, name,
         raise TemplateSyntaxError("%s didn't get values for arguments: %s" % (
                 name, ', '.join(["'%s'" % p for p in unhandled_params])))
 
-    return node_class(args, kwargs, output_var)
+    return node_class(args, kwargs, output_var, takes_context)
 
 
-def fancy_tag(library):
+def fancy_tag(library, takes_context=False):
     def inner(func):
         params, var_args_var, var_kwargs_var, defaults = getargspec(func)
 
         class FancyNode(Node):
-            def __init__(self, vars_to_resolve, kw_vars_to_resolve, output_var):
+            def __init__(self, vars_to_resolve, kw_vars_to_resolve, output_var, takes_context):
                 self.vars_to_resolve = map(Variable, vars_to_resolve)
                 self.kw_vars_to_resolve = dict(
                         [(kw, Variable(var)) for kw, var in kw_vars_to_resolve.items()])
                 self.output_var = output_var
+                self.takes_context = takes_context
 
             def render(self, context):
                 args = [var.resolve(context) for var in self.vars_to_resolve]
                 kwargs = dict(
                         [(kw, var.resolve(context)) for kw, var in self.kw_vars_to_resolve.items()])
+
+                if self.takes_context:
+                    args = [context] + args
 
                 if self.output_var is not None:
                     context[self.output_var] = func(*args, **kwargs)
@@ -87,6 +99,7 @@ def fancy_tag(library):
                 defaults,
                 var_args_var is not None,
                 var_kwargs_var is not None,
+                takes_context,
                 getattr(func, "_decorated_function", func).__name__,
                 FancyNode
                 )

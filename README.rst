@@ -111,6 +111,27 @@ Produces:
 
 Oh no, it's already February 20th, 2010!
 
+Accessing the Template Context
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Python Code::
+
+    @fancy_tag(register, takes_context)
+    def say_hello_to_user(context, phrase):
+        return u'%s, %s!' % (phrase, context['user'])
+
+Template Context::
+
+    {'user': 'Tobias'}  # Provided by a template context processor, for example
+
+Template Code::
+
+    {% say_hello_to_user "Hallo" %}
+
+Produces:
+
+Hallo, Tobias!
+
 Testing
 -------
 

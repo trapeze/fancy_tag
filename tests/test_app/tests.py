@@ -85,3 +85,14 @@ class FancyTagTestCase(TestCase):
                 Template,
                 '{% load example_tags %}{% say_soup "Stone" as "bad var name" %}'
                 )
+
+    def testTakesContext(self):
+        template = Template('{% load example_tags %}{% say_hello "Hallo" %}')
+        self.assertEqual(template.render(Context({'user': 'Tobias'})), 'Hallo, Tobias')
+
+    def testTakesContextOnFuncThatDoesNotTakeContextFails(self):
+        self.assertRaises(
+                TemplateSyntaxError,
+                Template,
+                '{% load example_tags %}{% say_hello_like_a_chump "Hallo" %}'
+                )

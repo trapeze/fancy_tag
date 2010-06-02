@@ -25,3 +25,14 @@ def say_names(*args):
 @fancy_tag(register)
 def say_languages(**kwargs):
     return ', '.join(['%s: %s' % (kw, v) for kw, v in kwargs.items()])
+
+
+@fancy_tag(register, takes_context=True)
+def say_hello(context, greeting):
+    return u'%s, %s' % (greeting, context['user'])
+
+
+@fancy_tag(register, takes_context=True)
+def say_hello_like_a_chump(greeting):
+    # Broken on purpose
+    return u'%s, %s' % (greeting, context['?'])
