@@ -7,10 +7,11 @@ f.close()
 
 setup(
     name='fancy_tag',
-    version='0.1.2', 
+    version='0.1.4',
     description="A replacement for Django's simple_tag decorator.",
     long_description=readme,
-    author='tamask',
+    author='Sam Bull',
+    author_email='sam@pocketuniverse.ca'
     url='https://github.com/trapeze/fancy_tag',
     packages=find_packages(),
     zip_safe=False,
