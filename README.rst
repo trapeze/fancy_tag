@@ -151,5 +151,5 @@ may be redistributed under the terms specified in the LICENSE file.
 Credits
 -------
 
-fancy_tag is maintained by [Sam Bull](sbull@trapeze.com), and is funded by
-[Trapeze](http://trapeze.com)
+fancy_tag is maintained by `Sam Bull <sam@pocketuniverse>`_, with support from
+`Trapeze <http://trapeze.com>`_.
