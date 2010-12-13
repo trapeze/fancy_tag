@@ -7,7 +7,7 @@ f.close()
 
 setup(
     name='fancy_tag',
-    version='0.1.4',
+    version='0.1.5',
     description="A replacement for Django's simple_tag decorator.",
     long_description=readme,
     author='Sam Bull',

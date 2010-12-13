@@ -1,3 +1,13 @@
+0.1.5
+=====
+
+Tagged on December 13, 2010 by Sam Bull <sam@pocketuniverse.ca>
+
+* Fixed setup.py so it includes package data files (like README)
+* Fixed restructured text in README
+
+* * *
+
 0.1.4
 =====
 
