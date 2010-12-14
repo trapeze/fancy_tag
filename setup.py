@@ -18,6 +18,7 @@ setup(
     classifiers=[
         'Programming Language :: Python',
         'Framework :: Django',
+        'License :: OSI Approved :: BSD License',
     ],
     install_requires=[
         'Django>=1.0'
