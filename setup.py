@@ -7,8 +7,8 @@ f.close()
 
 setup(
     name='fancy_tag',
-    version='0.1.5',
-    description="A replacement for Django's simple_tag decorator.",
+    version='0.2.0',
+    description="A powerful replacement for Django's simple_tag decorator that adds supports for positional, keyword arguments and template variable assignment.",
     long_description=readme,
     author='Sam Bull',
     author_email='sam@pocketuniverse.ca',
