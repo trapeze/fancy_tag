@@ -19,6 +19,10 @@ class FancyTagTestCase(TestCase):
         template = Template('{% load example_tags %}{% say_soup "Tomato" size="large" %}')
         self.assertEqual(template.render(Context()), 'Tomato Soup (large)')
 
+    def testContextLookupFailsSilently(self):
+        template = Template('{% load example_tags %}{% say_soup soup %}')
+        self.assertEqual(template.render(Context()), ' Soup')
+
     def testArgAfterKwargFails(self):
         self.assertRaises(
                 TemplateSyntaxError,
