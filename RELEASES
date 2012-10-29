@@ -1,7 +1,7 @@
 0.2.0
 =====
 
-Unreleased
+Tagged on October 29, 2012 by Sam Bull <sam@pocketuniverse.ca>
 
 * Verified that fancy_tag works when using Django 1.4
 * Missing variable lookup now falls back to
