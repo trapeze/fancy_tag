@@ -1,3 +1,15 @@
+0.2.0
+=====
+
+Unreleased
+
+* Verified that fancy_tag works when using Django 1.4
+* Missing variable lookup now falls back to
+  settings.TEMPLATE_STRING_IF_INVALID instead of
+  raising VariableDoesNotExist
+
+* * *
+
 0.1.5
 =====
 

@@ -1,7 +1,8 @@
 from inspect import getargspec
 import re
 
-from django.template import Node, Variable, generic_tag_compiler
+from django.conf import settings
+from django.template import Node, Variable, VariableDoesNotExist, generic_tag_compiler
 from django.template import TemplateSyntaxError, ALLOWED_VARIABLE_CHARS
 from django.utils.functional import curry
 
@@ -79,10 +80,16 @@ def fancy_tag(library, takes_context=False):
                 self.output_var = output_var
                 self.takes_context = takes_context
 
+            def safe_resolve(self, var, context):
+                try:
+                    return var.resolve(context)
+                except VariableDoesNotExist:
+                    return settings.TEMPLATE_STRING_IF_INVALID
+
             def render(self, context):
-                args = [var.resolve(context) for var in self.vars_to_resolve]
+                args = [self.safe_resolve(var, context) for var in self.vars_to_resolve]
                 kwargs = dict(
-                        [(kw, var.resolve(context)) for kw, var in self.kw_vars_to_resolve.items()])
+                        [(kw, self.safe_resolve(var, context)) for kw, var in self.kw_vars_to_resolve.items()])
 
                 if self.takes_context:
                     args = [context] + args

@@ -135,7 +135,9 @@ Hallo, Tobias!
 Testing
 -------
 
-With Django in your python path, run ``tests/run_tests.py``
+With Django in your python path, run ``tests/run_tests.py`` or use 
+`tox <http://tox.testrun.org/>`_ to run the tests using multiple
+Python and Django versions.
 
 Source
 ------
@@ -145,7 +147,7 @@ http://github.com/trapeze/fancy_tag
 License
 -------
 
-fancy_tag is Copyright (c) 2010 Sam Bull, Trapeze. It is free software, and
+fancy_tag is Copyright (c) 2010-2012 Sam Bull, Trapeze. It is free software, and
 may be redistributed under the terms specified in the LICENSE file.
 
 Credits
